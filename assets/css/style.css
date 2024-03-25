@@ -37,7 +37,6 @@
 *::after {
   box-sizing: border-box;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
@@ -46,7 +45,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -448,6 +447,10 @@ progress {
 
 [hidden] {
   display: none !important;
+}
+
+.main-page {
+  margin-top: 60px;
 }
 
 .lead {
@@ -3934,9 +3937,11 @@ textarea.form-control-lg {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  background: rgb(58,85,180);
+  background: linear-gradient(90deg, rgba(58,85,180,1) 0%, rgba(29,253,77,1) 50%, rgba(69,251,252,1) 100%);
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -3957,6 +3962,12 @@ textarea.form-control-lg {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  text-align: center;
+  color: black;
+}
+.navbar-brand:hover {
+  color: black;
+  text-decoration: underline;
 }
 .navbar-nav {
   display: flex;

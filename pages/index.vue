@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <h1>
-            test
-        </h1>
-    </div>
+  <Header active="'index'" />
+  <h1>
+    test
+  </h1>
 </template>
