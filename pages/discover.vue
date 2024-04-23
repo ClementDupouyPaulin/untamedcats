@@ -1,6 +1,6 @@
 <template>
+  <Header :active="'discover'" />
   <div class="content">
-    <Header :active="'discover'" />
       <div class="thomas-est-con">
         ceci est la page discover
       </div> 

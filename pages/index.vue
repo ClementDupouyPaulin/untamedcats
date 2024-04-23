@@ -3,8 +3,8 @@
 </script>
 
 <template>
+  <Header :active="'index'" />
   <div class="content">
-    <Header :active="'index'" />
     <div class="bottom-margin row">
       <div class="col-md-5">
         <img class="ut-image rounded mx-auto d-block" src="public/dashboard/UntamedCats.png"/>
