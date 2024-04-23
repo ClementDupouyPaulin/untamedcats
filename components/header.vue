@@ -9,9 +9,15 @@
 
 <template>
   <div class="navbar">
-      <NuxtLink to="/" class="navbar-brand">{{ $t('header.dashboard') }}</NuxtLink>
-      <NuxtLink to="/game" class="navbar-brand">{{ $t('header.games') }}</NuxtLink>
-      <NuxtLink to="/discover" class="navbar-brand">{{ $t('header.discover') }}</NuxtLink>
+    <!-- <div class="navbar-container">
+      [image]
+    </div> -->
+    <!-- <div class="navbar-container"> -->
+        <NuxtLink to="/" class="navbar-brand">{{ $t('header.dashboard') }}</NuxtLink>
+        <NuxtLink to="/game" class="navbar-brand">{{ $t('header.games') }}</NuxtLink>
+        <NuxtLink to="/discover" class="navbar-brand">{{ $t('header.discover') }}</NuxtLink>
+        <NuxtLink to="/account" class="navbar-brand">{{ $t('header.account') }}</NuxtLink>
+    <!-- </div> -->
   </div>
 </template>
 <style scoped>
