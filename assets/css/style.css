@@ -3934,6 +3934,17 @@ textarea.form-control-lg {
 .tab-content > .active {
   display: block;
 }
+.footer {
+  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #0e002c;
+  text-align: center;
+}
+
+.footer-brand {
+  color: #ffffff;
+}
 
 .navbar {
   position: relative;

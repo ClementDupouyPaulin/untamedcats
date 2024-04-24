@@ -1,5 +1,4 @@
 <template>
-  <Header :active="'discover'" />
   <div class="content">
       <div class="thomas-est-con">
         ceci est la page discover

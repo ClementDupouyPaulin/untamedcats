@@ -1,5 +1,4 @@
 <template>
-  <Header :active="'game'" />
   <div class="content">
     <div class="card">
       <div class="card-nav">
