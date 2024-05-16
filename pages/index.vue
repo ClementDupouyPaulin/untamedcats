@@ -26,7 +26,6 @@
 </template>
 
 <style scoped>
-.image {width: 100%;}
 .bottom-margin {margin-bottom: 100px;}
 p {font-size: larger}
 </style>
