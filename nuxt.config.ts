@@ -14,5 +14,8 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       title: 'Untamed Cats'
     }
-  }
+  },
+  plugins: [
+    { src: '@/plugins/htmltopdf.client', mode: 'client' }
+],
 })

@@ -1,3 +1,6 @@
+<script setup>
+  const config = useRuntimeConfig()
+</script>
 <template>
   <div>
     <NuxtLayout>

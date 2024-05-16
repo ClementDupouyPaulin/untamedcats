@@ -6,6 +6,33 @@
         "account" : "Compte"
     },
     "games": {
-        "discover": "Découvrir"
+        "discover": "Découvrir",
+        "wr": {
+            "controls": {
+                "title": "Explications des touches"
+            },
+            "settings": {
+                "title": "Explications des paramètres"
+            },
+            "menus": {
+                "title": "Explications des menus"
+            },
+            "classes": {
+                "title": "Descriptions des classes",
+                "contentSwordman": "La Swordman est une épéiste pouvant manier une épée à une main ou une épée et un bouclier. Les stats du joueur sont différentes en fonction de l’arme qu’il utilise. La « FEMME DE CHAMBRE » est l’épéiste la plus connue du Royaume de « NOM », elle à reçu de nombreux prix de noblesses et médailles suite à ses prouesses au combats durant les différentes batailles et conquête du Royaume.Après la chute de ce dernier, elle a trouvé de nouveaux compagnons d’armes et souhaite rétablir l’ordre au sein du Royaume avec leur aide. Elle possède un sens de la justice très aiguisé et entre souvent en conflit avec « NOM BARBARE » qui ne partage pas ses idéaux.",
+                "contentHealer": "La Healeuse « PLUS BELLE FEMME » est une prêtresse qui provient d’une petite église située dans la bourgade de « NOM » dans le Royaume de « NOM ». Elle a miraculeusement survécu lors de l’attaque de son église en étant sauvée par « NOM BARBARE », depuis ce jour, elle lui voue une grande reconnaissance. Elle continue de prier son dieu ce qui lui permet d’accorder des bénédictions qui soignent ses compagnons.  « PLUS BELLE FEMME » participe a cette aventure dans le but d’aider son sauveur et tous les citoyens qu’ils rencontrent, elle est toujours joyeuse et apporte une dose de bonne humeur au sein de la troupe, ainsi elles est appréciée de toute le monde et apprécie tout le monde.",
+                "contentBerserk": "Le Berserk « GROS BG » est un Barbare provenant de « NOM », une zone aride et reculée du Royaume de « NOM ». Il a décidé de partir en voyage à la découverte du monde pour grandir physiquement et psychologiquement. Il s’agit d’un excellent combattant au corps à corps, utilisant principalement ses poings pour se battre contre toutes les personnes puissantes qu’il croise. Il s’agit d’un voyageur solitaire au premier abord, cependant après le sauvetage de « NOM HEALEUSE », elle a commencé à le suivre. De plus, suite à sa défaite contre « NOM SWORDMAN », il partage dorénavant ses aventures pour progresser et apprendre d’elle dans le but de la vaincre un jour.",
+                "contentWizard": "Le Mage « JMENFOUS » est un célèbre vieux magicien, il entretenait une bonne relation avec le souverain « NOM » du Royaume de « NOM ». Après l’attaque dévastatrice du château, il a fuit les ruines sanglantes et est parti à la recherche de valeureux compagnons dans le but de remettre le Royaume de son ami sur pieds. Il rencontre alors la petite troupe de « NOM SWORDMAN » et place ainsi ses espoirs en eux, il décide donc de les guider et leur apporte de nombreux conseils acquis tout au long de sa vie. Il utilise un bâton pour lancer ses sorts qui sont aussi bien offensif que défensif.De plus, il apprécie tout particulièrement la prêtresse « NOM HEALEUSE » qu’il considère comme sa fille de cœur."
+            },
+            "maps": {
+                "title": "Explications des mappes"
+            },
+            "objects": {
+                "title": "Explication des objets"
+            },
+            "fight": {
+                "title":"Explication des combats"
+            }
+        }
     }
 }
