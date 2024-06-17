@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/style.css'],
   modules: [
     // '@nuxtjs/i18n'
-    'nuxt-icon'
+    '@sidebase/nuxt-pdf'
   ],
   app: {
     head: {
@@ -14,8 +14,5 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       title: 'Untamed Cats'
     }
-  },
-  plugins: [
-    { src: '@/plugins/htmltopdf.client', mode: 'client' }
-],
+  }
 })

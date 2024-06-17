@@ -1,33 +1,17 @@
 <script setup>
-  // const html2pdf = useState('html2pdf')
-
-  // function downloadPDF() {
-  //   html2Pdf.value.generatePdf()
-  // }
+  const pdfSection = ref()
 
 </script>
 
 <template>
   <div class="content">
-    <!-- <vue3-html2pdf  :show-layout="true"
-                    :float-layout="false"
-                    :enable-download="true"
-                    :preview-modal="false"
-                    filename="CopiePatient"
-                    :pdf-quality="2"
-                    pdf-format="a4"
-                    pdf-orientation="portrait"
-                    pdf-content-width="800px"
-                    :manual-pagination="true"
-                    ref="html2Pdf"
-    > -->
-
-      <!-- <div class="html2pdf__page-break"/> -->
     
       <h1 class="page-title">User Guide</h1>
       <!-- inserez le logo du jeu -->
 
       <!-- explication des touches -->
+    <div ref="pdfSection">
+
       <div class="card">
         <div class="card-nav">
           <h3 class="title">{{ $t('games.wr.controls.title') }}:</h3>
@@ -78,7 +62,6 @@
         </div>
       </div>
 
-      <!-- <div class="html2pdf__page-break"/> J'imagine--> 
 
       <!-- explications des maps -->
       <div class="card">
@@ -105,11 +88,11 @@
 
         
       </div>
-    <!-- </vue3-html2pdf> -->
+    </div>
 
-    <!-- <p class="">
-      <button class="" @click="downloadPDF()">Télécharger la version PDF</button>
-    </p> -->
+    <p class="">
+      <!-- <button class="" @click="exportToPDF('my-pdf-file.pdf', pdfSection)">Télécharger la version PDF</button> -->
+    </p>
   </div>
 </template>
 
