@@ -1,8 +1,113 @@
+<script setup>
+// import { ref } from 'vue'
+// import { useRouter } from 'vue-router'
+
+// const email = ref('')
+// const password = ref('')
+// const registerEmail = ref('')
+// const registerPassword = ref('')
+// const firstName = ref('')
+// const lastName = ref('')
+// const birthDate = ref('')
+// const gender = ref('')
+// const isRegistering = ref(false)
+// const errorMessage = ref('')
+
+// const router = useRouter()
+
+// async function handleSubmit() {
+//   try {
+//     const response = await fetch('/api/auth/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         email: email.value,
+//         password: password.value
+//       })
+//     })
+
+//     if (!response.ok) {
+//       throw new Error('Erreur de connexion')
+//     }
+
+//     const data = await response.json()
+//     console.log('Connexion réussie:', data)
+//     router.push('/')
+//   } catch (error) {
+//     console.error('Erreur de connexion:', error)
+//     errorMessage.value = error.message || 'Erreur de connexion'
+//   }
+// }
+
+// async function handleRegister() {
+//   const age = calculateAge(birthDate.value)
+//   if (age < 3) {
+//     errorMessage.value = "Âge minimal non requis."
+//     return
+//   }
+
+//   try {
+//     const response = await fetch('/api/auth/register', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         firstName: firstName.value,
+//         lastName: lastName.value,
+//         birthDate: birthDate.value,
+//         gender: gender.value,
+//         email: registerEmail.value,
+//         password: registerPassword.value
+//       })
+//     })
+
+//     if (!response.ok) {
+//       throw new Error('Erreur d\'inscription')
+//     }
+
+//     const data = await response.json()
+//     console.log('Inscription réussie:', data)
+//     switchToLogin()
+//   } catch (error) {
+//     console.error('Erreur d\'inscription:', error)
+//     errorMessage.value = error.message || 'Erreur d\'inscription'
+//   }
+// }
+
+// function loginWithGoogle() {
+//   // Logique de connexion avec Google
+//   console.log('Connexion avec Google')
+//   // Ajoutez ici l'intégration avec Google Auth
+// }
+
+// function switchToRegister() {
+//   isRegistering.value = true
+// }
+
+// function switchToLogin() {
+//   isRegistering.value = false
+// }
+
+// function calculateAge(birthDate) {
+//   const today = new Date()
+//   const birthDateObj = new Date(birthDate)
+//   let age = today.getFullYear() - birthDateObj.getFullYear()
+//   const monthDiff = today.getMonth() - birthDateObj.getMonth()
+//   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+//     age--
+//   }
+//   return age
+// }
+</script>
+
 <template>
   <div class="login-container">
     <div class="login-card" v-if="!isRegistering">
       <h2 class="title">Connexion</h2>
-      <img src="/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
+      <img src="public/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
       <form @submit.prevent="handleSubmit">
         <div class="input-group">
           <label for="email">Identifiant:</label>
@@ -24,7 +129,7 @@
 
     <div v-if="isRegistering" class="register-card">
       <h2 class="title">Inscription</h2>
-      <img src="/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
+      <img src="public/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
       <form @submit.prevent="handleRegister">
         <div class="input-group">
           <label for="firstname">Prénom:</label>
@@ -63,111 +168,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const email = ref('')
-const password = ref('')
-const registerEmail = ref('')
-const registerPassword = ref('')
-const firstName = ref('')
-const lastName = ref('')
-const birthDate = ref('')
-const gender = ref('')
-const isRegistering = ref(false)
-const errorMessage = ref('')
-
-const router = useRouter()
-
-async function handleSubmit() {
-  try {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email.value,
-        password: password.value
-      })
-    })
-
-    if (!response.ok) {
-      throw new Error('Erreur de connexion')
-    }
-
-    const data = await response.json()
-    console.log('Connexion réussie:', data)
-    router.push('/')
-  } catch (error) {
-    console.error('Erreur de connexion:', error)
-    errorMessage.value = error.message || 'Erreur de connexion'
-  }
-}
-
-async function handleRegister() {
-  const age = calculateAge(birthDate.value)
-  if (age < 3) {
-    errorMessage.value = "Âge minimal non requis."
-    return
-  }
-
-  try {
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        firstName: firstName.value,
-        lastName: lastName.value,
-        birthDate: birthDate.value,
-        gender: gender.value,
-        email: registerEmail.value,
-        password: registerPassword.value
-      })
-    })
-
-    if (!response.ok) {
-      throw new Error('Erreur d\'inscription')
-    }
-
-    const data = await response.json()
-    console.log('Inscription réussie:', data)
-    switchToLogin()
-  } catch (error) {
-    console.error('Erreur d\'inscription:', error)
-    errorMessage.value = error.message || 'Erreur d\'inscription'
-  }
-}
-
-function loginWithGoogle() {
-  // Logique de connexion avec Google
-  console.log('Connexion avec Google')
-  // Ajoutez ici l'intégration avec Google Auth
-}
-
-function switchToRegister() {
-  isRegistering.value = true
-}
-
-function switchToLogin() {
-  isRegistering.value = false
-}
-
-function calculateAge(birthDate) {
-  const today = new Date()
-  const birthDateObj = new Date(birthDate)
-  let age = today.getFullYear() - birthDateObj.getFullYear()
-  const monthDiff = today.getMonth() - birthDateObj.getMonth()
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
-    age--
-  }
-  return age
-}
-</script>
 
 <style scoped>
 body {
