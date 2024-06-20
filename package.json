@@ -34,6 +34,7 @@
     "node-fetch": "^3.3.2",
     "nuxt": "^3.12.2",
     "nuxt-icon": "^0.6.10",
+
     "sass": "1.77.6",
     "sequelize": "^6.37.3",
     "vue": "^3.4.29",
@@ -46,7 +47,13 @@
     "@types/cors": "^2.8.17",
     "@types/node": "^20.14.2",
     "@types/vue": "^2.0.0",
+<<<<<<< HEAD
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+=======
+    "@sidebase/nuxt-pdf": "^1.0.0-alpha.0",
+    "sass": "^1.77.1"
+
+>>>>>>> 9d72c4c892ab3243dd4db70af8bfaa22c4f9ce9d
   }
 }
