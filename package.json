@@ -5,20 +5,48 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^8.2.0",
-    "bootstrap": "^5.3.2",
-    "nuxt": "^3.11.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@intlify/core-base": "^9.13.1",
+    "@intlify/vue-router-bridge": "^1.1.0",
+    "@nuxt/http": "^0.6.4",
+    "@nuxt/kit": "^3.12.2",
+    "@nuxt/typescript-runtime": "^3.0.2",
+    "@nuxtjs/i18n": "^8.3.1",
+    "@nuxtjs/proxy": "^2.1.0",
+    "@types/bootstrap": "^5.2.10",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "consola": "^3.2.3",
+    "cors": "^2.8.5",
+    "defu": "^6.1.4",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.5.0",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.1",
+    "node-fetch": "^3.3.2",
+    "nuxt": "^3.12.2",
     "nuxt-icon": "^0.6.10",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "vue3-html2pdf": "^1.1.2"
+    "sass": "1.77.6",
+    "sequelize": "^6.37.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "vue": "^3.4.29",
+    "vue-i18n": "^9.13.1",
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
-    "sass": "^1.77.1"
+    "@nuxt/types": "^2.17.4",
+    "@nuxt/typescript-build": "^3.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.14.2",
+    "@types/vue": "^2.0.0"
   }
 }

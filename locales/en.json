@@ -1,0 +1,45 @@
+{
+    "header": {
+      "dashboard": "Dashboard",
+      "games": "Games",
+      "discover": "Discover",
+      "account": "Account"
+    },
+    "games": {
+      "discover": "Discover",
+      "wr": {
+        "presentation": {
+          "title": "Presentation",
+           "contentpresentation": "In Whiskers Rebellion, you play as a human endowed with abilities whose goal is to defeat the revolutionary cat army led by Nyan The Cat.\nExperience this crazy adventure and discover the secrets of this fascinating world."
+        },
+        "controls": {
+          "title": "Controls",
+          "contentcontrols": "Use the directional arrows, up, down, right, left to move the player in the desired direction.\nUse the space key to interact with various objects in the decor.\nUse the enter key to select/validate in menus and dialogs.\nUse the escape key to access the menu. The keys are all customizable in the Option menu."
+        },
+        "menus": {
+          "title": "Menus",
+          "contentmenu": "There are 2 Menus, the game launch Menu and the Pause Menu. The Game Menu allows you to access options, close the game or start a game, with the choice to create a new save or load an existing one. The Pause Menu allows you to access options, return to the main menu while saving the game, or continue playing."
+        },
+        "classes": {
+          "title": "Classes",
+          "contentSwordman": "The Swordman is a swordsman who can wield a one-handed sword or a sword and shield. The player's stats vary depending on the weapon he uses. Lady Seraphina of Valmont is the most renowned swordswoman in the Kingdom of Valeria, having received numerous noble titles and medals for her combat prowess during the Kingdom's various battles and conquests. After its fall, she found new companions in arms and wishes to restore order in the Kingdom with their help. She possesses a strong sense of justice and often clashes with Thorgar the Fierce, who does not share her ideals.",
+          "contentHealer": "The Healer Lyanna is a priestess from a small church in the village of Mistwood in the Kingdom of Valeria. She miraculously survived the attack on her church by being saved by Thorgar the Fierce, and since that day she has had great respect for him. She continues to pray to her god, which allows her to grant blessings that heal her companions. Lyanna participates in this adventure to help her savior and all the citizens they meet. She is always cheerful and brings a dose of good humor to the group, so she is appreciated by everyone and appreciates everyone.",
+          "contentBerserk": "The Berserk Thorgar the Fierce is a Barbarian from Skarn, an arid and remote area of the Kingdom of Valeria. He decided to travel the world to grow physically and mentally. He is an excellent hand-to-hand combatant, primarily using his fists to fight against all powerful opponents he encounters. He is a solitary traveler at first, but after saving Lyanna, she began to follow him. Additionally, after his defeat by Lady Seraphina of Valmont, he now shares their adventures to progress and learn from her in order to defeat her one day.",
+          "contentWizard": "The Wizard Eldric the Ancient is a famous old magician who had a good relationship with the benevolent sovereign Thaddeus of the Kingdom of Valeria. After the devastating attack on the castle, he fled the bloody ruins and went in search of valiant companions to restore his friend's kingdom. He then meets the small troupe of Lady Seraphina of Valmont and places his hopes in them. He decides to guide them and provide many pieces of advice gained throughout his life. He uses a staff to cast his spells, which are both offensive and defensive. Additionally, he particularly appreciates the priestess Lyanna, whom he considers his heart daughter."
+        },
+        "maps": {
+          "title": "Maps",
+          "contentmaps": "In the demo, the player can move around the Luminara Forest and seeks to reach the local lord's castle. He starts in front of the inn Les 3 Brasseurs and ends when he reaches the castle gates. He has the possibility to explore numerous caves throughout his adventure, during which he can find chests scattered around containing new equipment or items improving the characters' performance."
+        },
+        "objects": {
+          "title": "Objects (V2)",
+          "contentobject": "They will be added for V2, so currently under creation, it is therefore impossible to put them in the Userguide for the moment since they are not finalized."
+        },
+        "fight": {
+          "title": "Fights",
+          "contentfight": "Fights take place in turn-based mode, meaning the player and enemies alternate one action each turn. The player can choose between 4 actions:\n- Attack (launches an attack to injure one or more enemies)\n- Defend (launches a protection/healing spell/uses a shield... to protect and limit or cancel the damage he will suffer until a certain turn (depends on the action))\n- Use an item (allows the player to choose an item/potion from the inventory to use on an ally or enemy)\n- Flee (allows the player to flee the fight, this action often incurs a penalty for the player)\nThe player will always play first at the beginning of each fight.\nA fight starts after direct contact between the player's avatar and a monster or after a dialogue."
+        }
+      }
+    }
+  }
+  

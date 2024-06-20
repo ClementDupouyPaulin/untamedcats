@@ -7442,3 +7442,32 @@ textarea.form-control-lg {
   font-style: italic;
   color: rgb(15, 11, 88);
 }
+
+.link-title {
+  padding: 5px 10px;
+  color: transparent;  
+  background: linear-gradient(90deg, rgb(15, 11, 88) 0%, rgb(133, 151, 179) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  border: none;
+  margin: 0;
+  width: fit-content;
+}
+
+.link-title:hover {
+  padding: 5px 10px;
+  color: #000000;  
+  border: none;
+  margin: 0;
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.centered-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+

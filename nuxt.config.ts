@@ -1,21 +1,33 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['~/assets/css/style.css'],
+  css: [
+    'bootstrap/dist/css/bootstrap.css',
+    '~/assets/css/style.css'
+  ],
   modules: [
-    // '@nuxtjs/i18n'
     'nuxt-icon'
+  ],
+  plugins: [
+    '~/plugins/fontawesome.ts',
+    '~/plugins/api.ts'
   ],
   app: {
     head: {
       htmlAttrs: {
         lang: 'fr'
       },
-      charset: 'utf-8',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      ],
       title: 'Untamed Cats'
     }
   },
-  plugins: [
-    { src: '@/plugins/htmltopdf.client', mode: 'client' }
-],
-})
+  build: {
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.devtool = 'source-map';
+      }
+    }
+  },
+});
