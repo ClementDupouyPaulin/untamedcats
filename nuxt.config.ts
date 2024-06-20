@@ -5,7 +5,9 @@ export default defineNuxtConfig({
     '~/assets/css/style.css'
   ],
   modules: [
-    'nuxt-icon'
+    'nuxt-icon',
+    // '@nuxtjs/i18n'
+    '@sidebase/nuxt-pdf'
   ],
   plugins: [
     '~/plugins/fontawesome.ts',
@@ -30,4 +32,4 @@ export default defineNuxtConfig({
       }
     }
   },
-});
+})

@@ -1,9 +1,22 @@
+<script setup>
+  const pdfSection = ref()
+
+</script>
+
 <template>
   <div class="content">
-    <!-- Whiskers Rebellion Section -->
-    <div class="card">
-      <div class="card-nav">
-        <h3><NuxtLink class="link-title" to="/games/wr">Whiskers Rebellion (2024)</NuxtLink></h3>
+    
+      <h1 class="page-title">User Guide</h1>
+      <!-- inserez le logo du jeu -->
+
+      <!-- explication des touches -->
+    <div ref="pdfSection">
+
+      <div class="card">
+        <div class="card-nav">
+          <h3 class="title">{{ $t('games.wr.controls.title') }}:</h3>
+        </div>
+
       </div>
       <div class="card-body">
         <div class="wr-bg"></div>
@@ -33,8 +46,44 @@
             <img class="image" src="/public/warriors_cats/Logo.webp"/>
           </div>
         </div>
+        
+        <div class="card-body">
+          <h5 class="sub-title">Wizard:</h5>
+          <p>{{ $t('games.wr.classes.contentWizard') }}</p>
+        </div>
+      </div>
+
+
+      <!-- explications des maps -->
+      <div class="card">
+        <div class="card-nav">
+          <h3 class="title">{{ $t('games.wr.maps.title') }}:</h3>
+        </div>
+
+        
+      </div>
+      <!-- explications des objets -->
+      <div class="card">
+        <div class="card-nav">
+          <h3 class="title">{{ $t('games.wr.objects.title') }}:</h3>
+        </div>
+
+        
+      </div>
+
+      <!-- explication des systèmes de combats -->
+      <div class="card">
+        <div class="card-nav">
+          <h3 class="title">{{ $t('games.wr.fight.title') }}:</h3>
+        </div>
+
+        
       </div>
     </div>
+
+    <p class="">
+      <!-- <button class="" @click="exportToPDF('my-pdf-file.pdf', pdfSection)">Télécharger la version PDF</button> -->
+    </p>
   </div>
 </template>
 
