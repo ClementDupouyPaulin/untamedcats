@@ -36,8 +36,6 @@
     "nuxt-icon": "^0.6.10",
     "sass": "1.77.6",
     "sequelize": "^6.37.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
     "vue": "^3.4.29",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.3"
@@ -47,6 +45,8 @@
     "@nuxt/typescript-build": "^3.0.2",
     "@types/cors": "^2.8.17",
     "@types/node": "^20.14.2",
-    "@types/vue": "^2.0.0"
+    "@types/vue": "^2.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   }
 }

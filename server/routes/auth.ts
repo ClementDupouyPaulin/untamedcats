@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import User from './model/User';  // Ajustez le chemin si nécessaire
+import User from '../model/User';  // Ajustez le chemin si nécessaire
 import { Op } from 'sequelize';
 
 const router = express.Router();  // Utilisez express.Router() au lieu de Router()

@@ -23,11 +23,4 @@ export default defineNuxtConfig({
       title: 'Untamed Cats'
     }
   },
-  build: {
-    extend(config, { isDev, isClient }) {
-      if (isDev && isClient) {
-        config.devtool = 'source-map';
-      }
-    }
-  },
 });
