@@ -15,10 +15,4 @@ export default defineNuxtConfig({
       title: 'Untamed Cats'
     }
   },
-  
-  nitro: {
-    experimental: {
-      database: true
-    }
-  }
 })

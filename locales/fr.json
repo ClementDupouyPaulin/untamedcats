@@ -3,7 +3,8 @@
       "dashboard": "Accueil",
       "games": "Nos jeux",
       "discover": "Découvrez nous",
-      "account": "Compte"
+      "account": "Compte",
+      "forum": "Forum"
     },
     "games": {
       "discover": "Découvrir",
@@ -39,6 +40,20 @@
           "title": "Combats",
           "contentfight": "Les combats se déroulent au tour par tour, c’est-à-dire que le joueur et les ennemis alternent une action chacun leur tour. Le joueur a le choix entre 4 actions : - Attaquer (lance une attaque dans le but de blesser un ou des ennemis) - Défendre (lance un sort de protection / soin / utilise un bouclier… dans le but de se protéger et limiter ou annuler les dégâts qu’il subira jusqu’à un certain tour (dépends de l’action)) - Utiliser un objet (permet de choisir dans l’inventaire du joueur un objet / potion à utiliser sur un allier ou un ennemi) - Fuir (permet de fuir le combat, cette action entraine souvent une pénalité pour le joueur) Le joueur commencera toujours par jouer en premier au début de chaque combat. Un combat est lancé après un contact direct entre l’avatar du joueur et celui d’un monstre ou après un dialogue."
         }
+      }
+    },
+    "forum": {
+      "welcome": {
+        "title": "Bienvenu sur le forum de Untamed Cats !",
+        "body": "Ici tu peux partager tes aventures dans les différents jeux de notre studio, discuter avec les autres membres de la communauté Untamed Cats et découvrir toute l'actualité du studio"
+      },
+      "categories": {
+        "title": "Catégories",
+        "body": "Ici vous pouvez retrouver tous les posts du forum organisés par catégories"
+      },
+      "latest": {
+        "title": "Récents",
+        "body": "Voici les derniers messages postés par la communauté"
       }
     }
 }
