@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@sidebase/nuxt-pdf": "^1.0.0-alpha.0",
-    "better-sqlite3": "^9.6.0",
+    "better-sqlite3": "^11.0.0",
     "sass": "^1.77.1"
   }
 }

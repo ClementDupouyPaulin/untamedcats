@@ -50,6 +50,10 @@
       "categories": {
         "title": "Catégories",
         "body": "Ici vous pouvez retrouver tous les posts du forum organisés par catégories"
+      },
+      "latest": {
+        "title": "Récents",
+        "body": "Voici les derniers messages postés par la communauté"
       }
     }
 }

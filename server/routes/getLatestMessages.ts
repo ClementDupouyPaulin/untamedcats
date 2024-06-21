@@ -1,7 +1,6 @@
 import mysql from 'mysql2/promise';
 export default defineEventHandler(async (event) => {
     try {
-        const id = getRouterParam(event, 'id')
         const connection = await mysql.createConnection({
             host: 'localhost',
             user: 'root',
@@ -10,13 +9,10 @@ export default defineEventHandler(async (event) => {
             // password: '',
         })
 
-        const categoryQuery = 'SELECT * FROM `categories` WHERE `id`=' + id + ';'
-        const [category, categoryFields] = await connection.query(categoryQuery)
-
-        const messagesQuery = 'SELECT * FROM `messages` WHERE `parent_id` IS NULL AND `category_id`=' + id + ';'
+        const messagesQuery = 'SELECT * FROM `messages` LIMIT 5;'
         const [messages, messagesFields] = await connection.query(messagesQuery)
 
-        return {category, messages}
+        return {messages}
     } catch (err) {
         return {error: err}
     }

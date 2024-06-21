@@ -10,13 +10,10 @@ export default defineEventHandler(async (event) => {
             // password: '',
         })
 
-        const categoryQuery = 'SELECT * FROM `categories` WHERE `id`=' + id + ';'
-        const [category, categoryFields] = await connection.query(categoryQuery)
-
-        const messagesQuery = 'SELECT * FROM `messages` WHERE `parent_id` IS NULL AND `category_id`=' + id + ';'
+        const messagesQuery = 'SELECT * FROM `messages` WHERE `id`=' + id + ' OR `parent_id`=' + id + ';'
         const [messages, messagesFields] = await connection.query(messagesQuery)
 
-        return {category, messages}
+        return {messages}
     } catch (err) {
         return {error: err}
     }

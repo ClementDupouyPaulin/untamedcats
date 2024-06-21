@@ -1,12 +1,11 @@
 <script setup lang="ts">
 const route = useRoute()
-const categories = useFetch('/getCategories').data
-// 
+const apiCall = await useFetch('/getCategories')
 
 </script>
 <template>
   <div class="content">
-    {{ test }}
+    {{ apiCall }}
     <div class="card">
       <div class="card-nav">
          <h3>{{ $t('forum.welcome.title') }}</h3> 
@@ -18,20 +17,33 @@ const categories = useFetch('/getCategories').data
     </div>
 
     <div class="row">
-      <div class="card col-md-6">
-        <div class="card-nav">
-           <h3>{{ $t('forum.categories.title') }}</h3> 
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-nav">
+             <h3>{{ $t('forum.categories.title') }}</h3> 
+          </div>
+    
+          <div class="card-body">
+            <p>{{ $t('forum.categories.body') }}</p>
+          </div>
+          <!-- <ul>
+            <li v-for="category in categories.categories">
+s                <NuxtLink :to="'forum/' + category.id">{{ category.name }}</NuxtLink>
+            </li>
+          </ul> -->
         </div>
-  
-        <div class="card-body">
-          <p>{{ $t('forum.categories.body') }}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-nav">
+             <h3>{{ $t('forum.latest.title') }}</h3> 
+          </div>
+    
+          <div class="card-body">
+            <p>{{ $t('forum.latest.body') }}</p>
+          </div>
+          
         </div>
-        <ul>
-          <li v-for="category in categories.categories">
-            <!-- {{ category.name }} -->
-              <NuxtLink :to="'forum/' + category.id">{{ category.name }}</NuxtLink>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
