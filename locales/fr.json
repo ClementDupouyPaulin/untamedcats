@@ -32,10 +32,6 @@
           "title": "Maps",
           "contentmaps": "Dans la démo, le joueur peut se déplacer dans la Forêt de Luminara et cherche à atteindre le château du seigneur local. Il commence devant l’auberge Les 3 Brasseurs et fini lorsqu’il atteint les portes du château. Il a la possibilité d’explorer de nombreuses grottes présentes tout au long de son aventure durant laquelle il peut trouver des coffres disséminés un peu partout contenant de nouveau équipement ou objet améliorant les performances des personnages."
         },
-        "objects": {
-          "title": "Objets (V2)",
-          "contentobject": "Ils seront ajoutés pour la V2, donc actuellement en cours de création, il est donc impossible de les mettre dans le Userguide pour l’instant puisqu’ils ne sont pas définitifs."
-        },
         "fight": {
           "title": "Combats",
           "contentfight": "Les combats se déroulent au tour par tour, c’est-à-dire que le joueur et les ennemis alternent une action chacun leur tour. Le joueur a le choix entre 4 actions : - Attaquer (lance une attaque dans le but de blesser un ou des ennemis) - Défendre (lance un sort de protection / soin / utilise un bouclier… dans le but de se protéger et limiter ou annuler les dégâts qu’il subira jusqu’à un certain tour (dépends de l’action)) - Utiliser un objet (permet de choisir dans l’inventaire du joueur un objet / potion à utiliser sur un allier ou un ennemi) - Fuir (permet de fuir le combat, cette action entraine souvent une pénalité pour le joueur) Le joueur commencera toujours par jouer en premier au début de chaque combat. Un combat est lancé après un contact direct entre l’avatar du joueur et celui d’un monstre ou après un dialogue."

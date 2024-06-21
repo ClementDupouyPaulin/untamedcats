@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
             host: 'localhost',
             user: 'root',
             database: 'untamedcats',
-            // port: 3306,
-            // password: '',
+            port: 3306,
+            password: 'Clem13022003',
         })
 
         const messagesQuery = 'SELECT * FROM `messages` WHERE `id`=' + id + ' OR `parent_id`=' + id + ';'

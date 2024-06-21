@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
             host: 'localhost',
             user: 'root',
             database: 'untamedcats',
-            // port: 3306,
-            // password: '',
+            port: 3306,
+            password: 'Clem13022003',
         })
 
         const categoryQuery = 'SELECT * FROM `categories` WHERE `id`=' + id + ';'

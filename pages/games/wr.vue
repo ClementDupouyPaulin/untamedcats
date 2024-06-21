@@ -12,7 +12,7 @@ function changeState(index) {
 
 <template>
   <div class="content">
-    <h1 class="page-title">User Guide (Beta)</h1>
+    <h1 class="page-title">User Guide</h1>
     <img src="/whiskers_rebellion/logo.png" alt="UntamedCats Logo" class="centered-image">
 
     <!-- explication du jeu -->
@@ -84,7 +84,7 @@ function changeState(index) {
         </div>
         <div>
           <h5 class="sub-title">Wizard:</h5>
-          <!-- <img src="public/userguide/wizard.png" alt="Wizard" class="class-image"> -->
+          <img src="public/userguide/wizard.png" alt="Wizard" class="class-image">
           <p>{{ $t('games.wr.classes.contentWizard') }}</p>
         </div>
       </div>
@@ -98,17 +98,6 @@ function changeState(index) {
       <div class="card-body" v-show="!(visible.indexOf(4) > -1)">
         <!-- <img src="public/userguide/map.png" alt="Maps Image" class="section-image"> -->
         <p v-html="$t('games.wr.maps.contentmaps')"></p>
-      </div>
-    </div>
-
-    <!-- explications des objets -->
-    <div class="card">
-      <div class="card-nav">
-        <h3 class="link-title" @click="changeState(5)">{{ $t('games.wr.objects.title') }}:</h3>
-      </div>
-      <div class="card-body" v-show="!(visible.indexOf(5) > -1)">
-        <!-- <img src="public/userguide/objects.png" alt="Objects Image" class="section-image"> -->
-        <p v-html="$t('games.wr.objects.contentobject')"></p>
       </div>
     </div>
 

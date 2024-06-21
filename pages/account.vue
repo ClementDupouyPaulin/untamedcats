@@ -1,169 +1,191 @@
-<script setup>
-// import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-// const email = ref('')
-// const password = ref('')
-// const registerEmail = ref('')
-// const registerPassword = ref('')
-// const firstName = ref('')
-// const lastName = ref('')
-// const birthDate = ref('')
-// const gender = ref('')
-// const isRegistering = ref(false)
-// const errorMessage = ref('')
+const email = ref('');
+const password = ref('');
+const registerEmail = ref('');
+const registerPassword = ref('');
+const firstName = ref('');
+const lastName = ref('');
+const birthDate = ref('');
+const gender = ref('');
+const pseudo = ref('');
+const agreeToTerms = ref(false);
+const isRegistering = ref(false);
+const errorMessage = ref('');
 
-// const router = useRouter()
+const router = useRouter();
 
-// async function handleSubmit() {
-//   try {
-//     const response = await fetch('/api/auth/login', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         email: email.value,
-//         password: password.value
-//       })
-//     })
+async function handleSubmit() {
+  try {
+    const response = await fetch('/api/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'login',
+        login: email.value,
+        password: password.value
+      })
+    });
 
-//     if (!response.ok) {
-//       throw new Error('Erreur de connexion')
-//     }
+    if (!response.ok) {
+      throw new Error('Erreur de connexion');
+    }
 
-//     const data = await response.json()
-//     console.log('Connexion réussie:', data)
-//     router.push('/')
-//   } catch (error) {
-//     console.error('Erreur de connexion:', error)
-//     errorMessage.value = error.message || 'Erreur de connexion'
-//   }
-// }
+    const data = await response.json();
+    console.log('Connexion réussie:', data);
+    localStorage.setItem('token', data.token);
+    router.push('/');
+  } catch (error) {
+    console.error('Erreur de connexion:', error);
+    errorMessage.value = error.message || 'Erreur de connexion';
+  }
+}
 
-// async function handleRegister() {
-//   const age = calculateAge(birthDate.value)
-//   if (age < 3) {
-//     errorMessage.value = "Âge minimal non requis."
-//     return
-//   }
+async function handleRegister() {
+  if (!agreeToTerms.value) {
+    errorMessage.value = "Vous devez accepter les conditions d'utilisation.";
+    return;
+  }
 
-//   try {
-//     const response = await fetch('/api/auth/register', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         firstName: firstName.value,
-//         lastName: lastName.value,
-//         birthDate: birthDate.value,
-//         gender: gender.value,
-//         email: registerEmail.value,
-//         password: registerPassword.value
-//       })
-//     })
+  const age = calculateAge(birthDate.value);
+  if (age < 3) {
+    errorMessage.value = "Âge minimal non requis.";
+    return;
+  }
 
-//     if (!response.ok) {
-//       throw new Error('Erreur d\'inscription')
-//     }
+  try {
+    const response = await fetch('/api/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'register',
+        firstName: firstName.value,
+        lastName: lastName.value,
+        birthDate: birthDate.value,
+        gender: gender.value,
+        email: registerEmail.value,
+        pseudo: pseudo.value,
+        password: registerPassword.value
+      })
+    });
 
-//     const data = await response.json()
-//     console.log('Inscription réussie:', data)
-//     switchToLogin()
-//   } catch (error) {
-//     console.error('Erreur d\'inscription:', error)
-//     errorMessage.value = error.message || 'Erreur d\'inscription'
-//   }
-// }
+    if (!response.ok) {
+      throw new Error('Erreur d\'inscription');
+    }
 
-// function loginWithGoogle() {
-//   // Logique de connexion avec Google
-//   console.log('Connexion avec Google')
-//   // Ajoutez ici l'intégration avec Google Auth
-// }
+    const data = await response.json();
+    console.log('Inscription réussie:', data);
+    switchToLogin();
+  } catch (error) {
+    console.error('Erreur d\'inscription:', error);
+    errorMessage.value = error.message || 'Erreur d\'inscription';
+  }
+}
 
-// function switchToRegister() {
-//   isRegistering.value = true
-// }
+function loginWithGoogle() {
+  // Logique de connexion avec Google
+  console.log('Connexion avec Google');
+  // Ajoutez ici l'intégration avec Google Auth
+}
 
-// function switchToLogin() {
-//   isRegistering.value = false
-// }
+function switchToRegister() {
+  isRegistering.value = true;
+}
 
-// function calculateAge(birthDate) {
-//   const today = new Date()
-//   const birthDateObj = new Date(birthDate)
-//   let age = today.getFullYear() - birthDateObj.getFullYear()
-//   const monthDiff = today.getMonth() - birthDateObj.getMonth()
-//   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
-//     age--
-//   }
-//   return age
-// }
+function switchToLogin() {
+  isRegistering.value = false;
+}
+
+function calculateAge(birthDate) {
+  const today = new Date();
+  const birthDateObj = new Date(birthDate);
+  let age = today.getFullYear() - birthDateObj.getFullYear();
+  const monthDiff = today.getMonth() - birthDateObj.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+    age--;
+  }
+  return age;
+}
 </script>
 
 <template>
-  <div class="login-container">
-    <div class="login-card" v-if="!isRegistering">
-      <h2 class="title">Connexion</h2>
-      <img src="public/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
-      <form @submit.prevent="handleSubmit">
-        <div class="input-group">
-          <label for="email">Identifiant:</label>
-          <input type="email" id="email" v-model="email" required />
+  <div class="content">
+    <div class="login-container">
+      <div class="login-card" v-if="!isRegistering">
+        <h2 class="title">Connexion</h2>
+        <img src="/public/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
+        <form @submit.prevent="handleSubmit">
+          <div class="input-group">
+            <label for="email">Identifiant:</label>
+            <input type="text" id="email" v-model="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" v-model="password" required />
+          </div>
+          <button type="submit" class="login-button">Se connecter</button>
+          <button type="button" class="google-button" @click="loginWithGoogle">
+            <img src="https://img.icons8.com/color/16/000000/google-logo.png"/> Google
+          </button>
+        </form>
+        <div class="switch-mode">
+          <p>Pas de compte ? <a @click="switchToRegister">Inscrivez-vous</a></p>
         </div>
-        <div class="input-group">
-          <label for="password">Mot de passe:</label>
-          <input type="password" id="password" v-model="password" required />
-        </div>
-        <button type="submit" class="login-button">Se connecter</button>
-        <button type="button" class="google-button" @click="loginWithGoogle">
-          <img src="https://img.icons8.com/color/16/000000/google-logo.png"/> Google
-        </button>
-      </form>
-      <div class="switch-mode">
-        <p>Pas de compte ? <a @click="switchToRegister">Inscrivez-vous</a></p>
       </div>
-    </div>
 
-    <div v-if="isRegistering" class="register-card">
-      <h2 class="title">Inscription</h2>
-      <img src="public/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
-      <form @submit.prevent="handleRegister">
-        <div class="input-group">
-          <label for="firstname">Prénom:</label>
-          <input type="text" id="firstname" v-model="firstName" required />
+      <div v-if="isRegistering" class="register-card">
+        <h2 class="title">Inscription</h2>
+        <img src="/public/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
+        <form @submit.prevent="handleRegister">
+          <div class="input-group">
+            <label for="firstname">Prénom:</label>
+            <input type="text" id="firstname" v-model="firstName" required />
+          </div>
+          <div class="input-group">
+            <label for="lastname">Nom:</label>
+            <input type="text" id="lastname" v-model="lastName" required />
+          </div>
+          <div class="input-group">
+            <label for="birthdate">Date de naissance:</label>
+            <input type="date" id="birthdate" v-model="birthDate" required />
+          </div>
+          <div class="input-group">
+            <label for="gender">Genre:</label>
+            <select id="gender" v-model="gender" required>
+              <option value="male">Homme</option>
+              <option value="female">Femme</option>
+              <option value="other">Autre</option>
+              <option value="unknown">Préfère ne pas dire</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="pseudo">Pseudo:</label>
+            <input type="text" id="pseudo" v-model="pseudo" required />
+          </div>
+          <div class="input-group">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" v-model="registerEmail" required />
+          </div>
+          <div class="input-group">
+            <label for="register-password">Mot de passe:</label>
+            <input type="password" id="register-password" v-model="registerPassword" required />
+          </div>
+          <div class="input-group terms">
+            <input type="checkbox" id="terms" v-model="agreeToTerms" required />
+            <label for="terms">J'accepte les <NuxtLink to="/terms">conditions d'utilisation</NuxtLink></label>
+          </div>
+          <button type="submit" class="register-button">S'inscrire</button>
+        </form>
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        <div class="switch-mode">
+          <p>Déjà un compte? <a @click="switchToLogin">Connectez-vous</a></p>
         </div>
-        <div class="input-group">
-          <label for="lastname">Nom:</label>
-          <input type="text" id="lastname" v-model="lastName" required />
-        </div>
-        <div class="input-group">
-          <label for="birthdate">Date de naissance:</label>
-          <input type="date" id="birthdate" v-model="birthDate" required />
-        </div>
-        <div class="input-group">
-          <label for="gender">Genre:</label>
-          <select id="gender" v-model="gender" required>
-            <option value="male">Homme</option>
-            <option value="female">Femme</option>
-            <option value="other">Autre</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="register-email">Email:</label>
-          <input type="email" id="register-email" v-model="registerEmail" required />
-        </div>
-        <div class="input-group">
-          <label for="register-password">Mot de passe:</label>
-          <input type="password" id="register-password" v-model="registerPassword" required />
-        </div>
-        <button type="submit" class="register-button">S'inscrire</button>
-      </form>
-      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-      <div class="switch-mode">
-        <p>Déjà un compte? <a @click="switchToLogin">Connectez-vous</a></p>
       </div>
     </div>
   </div>
@@ -187,8 +209,6 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  position: relative;
-  padding-top: 50px; /* Add some padding to push the form down */
 }
 
 .login-card, .register-card {
@@ -238,6 +258,15 @@ body {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
+}
+
+.input-group.terms {
+  display: flex;
+  align-items: center;
+}
+
+.input-group.terms input {
+  margin-right: 10px;
 }
 
 .login-button, .register-button, .google-button {

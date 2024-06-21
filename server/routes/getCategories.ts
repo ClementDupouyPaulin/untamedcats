@@ -5,8 +5,8 @@ export default defineEventHandler(async () => {
             host: 'localhost',
             user: 'root',
             database: 'untamedcats',
-            // port: 3306,
-            // password: '',
+            port: 3306,
+            password: 'Clem13022003',
         })
 
         const sql = 'SELECT * FROM `categories`'
