@@ -5,7 +5,7 @@ const teamMembers = ref([
   { name: 'FEDERICO', role: 'Full Stack Dev', photo: '/members/Federico.png' },
   { name: 'THOMAS', role: 'Project Manager', photo: '/members/Thomas.jpg' },
   { name: 'BASTIEN', role: 'Tech Lead', photo: '/members/Bastien.jpg' },
-  { name: 'SARAH', role: 'Community Manager', photo: '/members/Sarah.jpg' },
+  { name: 'SARAH', role: 'Community Manager', photo: '/members/sarah.png' },
 ]);
 </script>
 
@@ -42,9 +42,12 @@ const teamMembers = ref([
       <h3>Notre Équipe</h3>
       <div class="team-container">
         <div class="team-member" v-for="member in teamMembers" :key="member.name">
-          <img :src="member.photo" :alt="member.name" class="team-photo">
-          <h4>{{ member.name }}</h4>
-          <p>{{ member.role }}</p>
+          <NuxtLink :to="'/members/' + member.name">
+            <img :src="member.photo" :alt="member.name" class="team-photo">
+            <h4>{{ member.name }}</h4>
+            <p>{{ member.role }}</p>
+          </NuxtLink>
+
         </div>
       </div>
       <img src="public/cats/Chat3.png" alt="Chat" class="random-cat cat3">
@@ -100,6 +103,17 @@ p {
   object-fit: cover; /* Ensure the photos cover the container proportionally */
   border-radius: 10px;
   border: 5px solid #ccc;
+  transition: all 0.3s; /* Add transition effect */
+}
+
+.team-photo:hover {
+  width: 156px;
+  height: 216px;
+  object-fit: cover; /* Ensure the photos cover the container proportionally */
+  border-radius: 10px;
+  border: 5px solid #ccc;
+  transition: all 0.3s; /* Add transition effect */
+  cursor: pointer;
 }
 
 .team-member h4 {
