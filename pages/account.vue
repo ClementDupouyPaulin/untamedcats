@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useNuxtApp } from '#app';
 
 const email = ref('');
 const password = ref('');
@@ -10,37 +11,56 @@ const firstName = ref('');
 const lastName = ref('');
 const birthDate = ref('');
 const gender = ref('');
-const pseudo = ref('');
+const username = ref('');
 const agreeToTerms = ref(false);
 const isRegistering = ref(false);
 const errorMessage = ref('');
+const successMessage = ref('');
 
 const router = useRouter();
+const nuxtApp = useNuxtApp();
+
+const user = computed(() => nuxtApp.$auth.getUser());
+
+onMounted(() => {
+  if (user.value) {
+    router.push('/account');
+  }
+});
+
+function validateEmail(email: string) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
 
 async function handleSubmit() {
+  if (!validateEmail(email.value)) {
+    errorMessage.value = 'Format de l\'email invalide';
+    return;
+  }
+
   try {
-    const response = await fetch('/api/auth', {
+    const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        action: 'login',
-        login: email.value,
+        email: email.value,
         password: password.value
       })
     });
 
-    if (!response.ok) {
-      throw new Error('Erreur de connexion');
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message || 'Erreur de connexion');
     }
 
-    const data = await response.json();
-    console.log('Connexion réussie:', data);
-    localStorage.setItem('token', data.token);
-    router.push('/');
+    nuxtApp.$auth.login(data.user);
+    successMessage.value = 'Connexion réussie!';
+    router.push('/account');
   } catch (error) {
-    console.error('Erreur de connexion:', error);
     errorMessage.value = error.message || 'Erreur de connexion';
   }
 }
@@ -51,6 +71,11 @@ async function handleRegister() {
     return;
   }
 
+  if (!validateEmail(registerEmail.value)) {
+    errorMessage.value = 'Format de l\'email invalide';
+    return;
+  }
+
   const age = calculateAge(birthDate.value);
   if (age < 3) {
     errorMessage.value = "Âge minimal non requis.";
@@ -58,40 +83,34 @@ async function handleRegister() {
   }
 
   try {
-    const response = await fetch('/api/auth', {
+    const response = await fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        action: 'register',
         firstName: firstName.value,
         lastName: lastName.value,
         birthDate: birthDate.value,
         gender: gender.value,
         email: registerEmail.value,
-        pseudo: pseudo.value,
+        username: username.value,
         password: registerPassword.value
       })
     });
 
-    if (!response.ok) {
-      throw new Error('Erreur d\'inscription');
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message || 'Erreur d\'inscription');
     }
 
-    const data = await response.json();
-    console.log('Inscription réussie:', data);
-    switchToLogin();
+    nuxtApp.$auth.login(data.user);
+    successMessage.value = 'Inscription réussie!';
+    router.push('/account');
   } catch (error) {
-    console.error('Erreur d\'inscription:', error);
     errorMessage.value = error.message || 'Erreur d\'inscription';
   }
-}
-
-function loginWithGoogle() {
-  // Logique de connexion avec Google
-  console.log('Connexion avec Google');
-  // Ajoutez ici l'intégration avec Google Auth
 }
 
 function switchToRegister() {
@@ -102,7 +121,7 @@ function switchToLogin() {
   isRegistering.value = false;
 }
 
-function calculateAge(birthDate) {
+function calculateAge(birthDate: string) {
   const today = new Date();
   const birthDateObj = new Date(birthDate);
   let age = today.getFullYear() - birthDateObj.getFullYear();
@@ -112,79 +131,94 @@ function calculateAge(birthDate) {
   }
   return age;
 }
+
+function handleLogout() {
+  nuxtApp.$auth.logout();
+  router.push('/');
+}
 </script>
 
 <template>
-  <div class="content">
-    <div class="login-container">
-      <div class="login-card" v-if="!isRegistering">
-        <h2 class="title">Connexion</h2>
-        <img src="/public/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
-        <form @submit.prevent="handleSubmit">
-          <div class="input-group">
-            <label for="email">Identifiant:</label>
-            <input type="text" id="email" v-model="email" required />
+  <div v-if="user">
+    <div class="account-info">
+      <h2>Bienvenue, {{ user.firstName }}</h2>
+      <p><strong>Nom:</strong> {{ user.lastName }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Âge:</strong> {{ calculateAge(user.birthDate) }} ans</p>
+      <button @click="handleLogout" class="logout-button">Se déconnecter</button>
+    </div>
+  </div>
+  <div v-else>
+    <div class="content">
+      <div class="login-container">
+        <div class="login-card" v-if="!isRegistering">
+          <h2 class="title">Connexion</h2>
+          <img src="/public/cats/Chat3.png" alt="Chat" class="random-cat cat-login">
+          <form @submit.prevent="handleSubmit">
+            <div class="input-group">
+              <label for="email">Identifiant:</label>
+              <input type="text" id="email" v-model="email" required />
+            </div>
+            <div class="input-group">
+              <label for="password">Mot de passe:</label>
+              <input type="password" id="password" v-model="password" required />
+            </div>
+            <button type="submit" class="login-button">Se connecter</button>
+          </form>
+          <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div class="switch-mode">
+            <p>Pas de compte ? <a @click="switchToRegister">Inscrivez-vous</a></p>
           </div>
-          <div class="input-group">
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" v-model="password" required />
-          </div>
-          <button type="submit" class="login-button">Se connecter</button>
-          <button type="button" class="google-button" @click="loginWithGoogle">
-            <img src="https://img.icons8.com/color/16/000000/google-logo.png"/> Google
-          </button>
-        </form>
-        <div class="switch-mode">
-          <p>Pas de compte ? <a @click="switchToRegister">Inscrivez-vous</a></p>
         </div>
-      </div>
 
-      <div v-if="isRegistering" class="register-card">
-        <h2 class="title">Inscription</h2>
-        <img src="/public/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
-        <form @submit.prevent="handleRegister">
-          <div class="input-group">
-            <label for="firstname">Prénom:</label>
-            <input type="text" id="firstname" v-model="firstName" required />
+        <div v-if="isRegistering" class="register-card">
+          <h2 class="title">Inscription</h2>
+          <img src="/public/cats/Chat4.png" alt="Chat" class="random-cat cat-register">
+          <form @submit.prevent="handleRegister">
+            <div class="input-group">
+              <label for="firstname">Prénom:</label>
+              <input type="text" id="firstname" v-model="firstName" required />
+            </div>
+            <div class="input-group">
+              <label for="lastname">Nom:</label>
+              <input type="text" id="lastname" v-model="lastName" required />
+            </div>
+            <div class="input-group">
+              <label for="birthdate">Date de naissance:</label>
+              <input type="date" id="birthdate" v-model="birthDate" required />
+            </div>
+            <div class="input-group">
+              <label for="gender">Genre:</label>
+              <select id="gender" v-model="gender" required>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+                <option value="unknown">Préfère ne pas dire</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" v-model="username" required />
+            </div>
+            <div class="input-group">
+              <label for="register-email">Email:</label>
+              <input type="email" id="register-email" v-model="registerEmail" required />
+            </div>
+            <div class="input-group">
+              <label for="register-password">Mot de passe:</label>
+              <input type="password" id="register-password" v-model="registerPassword" required />
+            </div>
+            <div class="input-group terms">
+              <input type="checkbox" id="terms" v-model="agreeToTerms" required />
+              <label for="terms">J'accepte les <NuxtLink to="/terms">conditions d'utilisation</NuxtLink></label>
+            </div>
+            <button type="submit" class="register-button">S'inscrire</button>
+          </form>
+          <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div class="switch-mode">
+            <p>Déjà un compte? <a @click="switchToLogin">Connectez-vous</a></p>
           </div>
-          <div class="input-group">
-            <label for="lastname">Nom:</label>
-            <input type="text" id="lastname" v-model="lastName" required />
-          </div>
-          <div class="input-group">
-            <label for="birthdate">Date de naissance:</label>
-            <input type="date" id="birthdate" v-model="birthDate" required />
-          </div>
-          <div class="input-group">
-            <label for="gender">Genre:</label>
-            <select id="gender" v-model="gender" required>
-              <option value="male">Homme</option>
-              <option value="female">Femme</option>
-              <option value="other">Autre</option>
-              <option value="unknown">Préfère ne pas dire</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="pseudo">Pseudo:</label>
-            <input type="text" id="pseudo" v-model="pseudo" required />
-          </div>
-          <div class="input-group">
-            <label for="register-email">Email:</label>
-            <input type="email" id="register-email" v-model="registerEmail" required />
-          </div>
-          <div class="input-group">
-            <label for="register-password">Mot de passe:</label>
-            <input type="password" id="register-password" v-model="registerPassword" required />
-          </div>
-          <div class="input-group terms">
-            <input type="checkbox" id="terms" v-model="agreeToTerms" required />
-            <label for="terms">J'accepte les <NuxtLink to="/terms">conditions d'utilisation</NuxtLink></label>
-          </div>
-          <button type="submit" class="register-button">S'inscrire</button>
-        </form>
-        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-        <div class="switch-mode">
-          <p>Déjà un compte? <a @click="switchToLogin">Connectez-vous</a></p>
         </div>
       </div>
     </div>
@@ -192,6 +226,30 @@ function calculateAge(birthDate) {
 </template>
 
 <style scoped>
+.account-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;

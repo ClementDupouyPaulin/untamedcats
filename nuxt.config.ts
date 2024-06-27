@@ -1,9 +1,7 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/style.css'],
   modules: [
-    // '@nuxtjs/i18n'
     '@sidebase/nuxt-pdf'
   ],
   app: {
@@ -15,4 +13,10 @@ export default defineNuxtConfig({
       title: 'Untamed Cats'
     }
   },
-})
+  nitro: {
+    preset: 'node-server' 
+  },
+  server: {
+    port: 5000 // Définir le port sur 5000
+  }
+});
